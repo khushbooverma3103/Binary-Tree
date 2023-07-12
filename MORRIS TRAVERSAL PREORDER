@@ -1,0 +1,51 @@
+/**********************************************************
+	Following is the Binary Tree Node class structure
+
+	template <typename T>
+	class BinaryTreeNode {
+    	public : 
+    	T data;
+    	BinaryTreeNode<T> *left;
+    	BinaryTreeNode<T> *right;
+
+    	BinaryTreeNode(T data) {
+        	this -> data = data;
+        	left = NULL;
+        	right = NULL;
+    	}
+	};
+
+***********************************************************/
+
+void preOrder(BinaryTreeNode<int> *root) {
+	// Write your code here
+	   
+    BinaryTreeNode<int> *pred;
+    BinaryTreeNode<int> *cur;
+    cur= root;
+    while(cur!=NULL){
+		
+        if(cur->left == NULL){
+			cout<<(cur->data)<<" ";
+            cur=cur->right;
+        }
+        else {
+            pred= cur->left;
+            while(pred->right!=NULL && pred->right!=cur){
+                pred=pred->right;
+            }
+            if(pred->right==cur){
+				pred->right=NULL;
+                cur=cur->right;
+            }
+            else{
+				cout<<(cur->data)<<" ";
+                pred->right=cur;
+                cur=cur->left;   
+            }
+        }
+
+    }
+        
+        
+}
